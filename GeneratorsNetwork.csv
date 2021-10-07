@@ -1,0 +1,33 @@
+Node_ELEC,Node_GAS,Gen_ID,Prime Mover,Fuel,Existing Units [no.],Unit Size [MW],Max New Units Annual [units/year],Max New Units Total [no.],Pmin [p.u.],Pmax [p.u.],Ramp Down Rate [p.u.],Ramp Up Rate [p.u.],Min Up Time [hours],Min Down Time [hours],is_Renewable [bin.],Heat Rate [MMBTU/MWh],is_NGFueled [bin.],Emissions Factor [kgCO2/MMBTU],Startup Cost [$/start],Econmic Lifetime [years],Lifetime [years],Startup Fuel [MMBtu/start],Install Year,Forced Retirement
+1,1,GEN1,Natural Gas CT,Natural Gas,10,50,2,100,0.1,1,1,1,1,1,0,9.91,1,53.1,0,30,30,0,2005,2050
+1,1,GEN2,Coal,Coal,1,200,0,0,0.5,1,0.3,0.3,24,12,0,10.3,0,96.3,0,30,40,0,1990,2050
+2,1,GEN3,Natural Gas CT,Natural Gas,10,50,2,100,0.1,1,1,1,1,1,0,9.91,1,53.1,0,30,30,0,2010,2050
+2,1,GEN4,Coal,Coal,1,200,0,0,0.5,1,0.3,0.3,24,12,0,11.5,0,96.3,0,30,30,0,2000,2050
+7,19,GEN5,Natural Gas CC,Natural Gas,10,100,1,100,0.3,1,0.7,0.7,2,1,0,7,1,53.1,0,30,30,0,2010,2050
+13,24,GEN6,Natural Gas CC,Natural Gas,10,100,1,100,0.3,1,0.7,0.7,2,1,0,7.5,1,53.1,0,30,30,0,2005,2050
+15,13,GEN7,Natural Gas CC,Natural Gas,10,100,1,100,0.3,1,0.7,0.7,2,1,0,6.46,1,53.1,0,30,30,0,2000,2050
+16,1,GEN8,Coal,Coal,1,200,0,0,0.5,1,0.3,0.3,24,12,0,9.6,0,96.3,0,30,30,0,1985,2050
+18,1,GEN9,Nuclear,Nuclear,1,500,1,1,0.5,1,0.25,0.25,36,36,0,10.46,0,0,0,30,80,0,1970,2050
+22,8,GEN10,Natural Gas CT,Natural Gas,10,50,2,100,0.1,1,1,1,1,1,0,9.91,1,53.1,0,30,30,0,2015,2050
+23,1,GEN11,Coal,Coal,1,200,0,0,0.5,1,0.3,0.3,24,12,0,9.6,0,96.3,0,30,30,0,2005,2050
+1,1,GEN12,Solar PV,UtilityPV,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+1,1,GEN13,Wind,LandbasedWind,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+2,1,GEN14,Solar PV,UtilityPV,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+2,1,GEN15,Wind,LandbasedWind,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+7,19,GEN16,Solar PV,UtilityPV,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+7,19,GEN17,Wind,LandbasedWind,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+4,19,GEN18,Natural Gas CC-CCS,Natural Gas,0,200,1,1,0.4,1,0.6,0.6,4,3,0,7.53,1,5.31,0,30,30,0,2050,2050
+13,24,GEN19,Natural Gas CC-CCS,Natural Gas,0,200,1,2,0.4,1,0.6,0.6,4,3,0,7.53,1,5.31,0,30,30,0,2050,2050
+13,24,GEN20,Solar PV,UtilityPV,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+13,24,GEN21,Wind,LandbasedWind,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+14,13,GEN22,Natural Gas CC-CCS,Natural Gas,0,200,1,2,0.4,1,0.6,0.6,4,3,0,7.53,1,5.31,0,30,30,0,2050,2050
+14,13,GEN23,Solar PV,UtilityPV,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+14,13,GEN24,Wind,LandbasedWind,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+15,13,GEN25,Natural Gas CC-CCS,Natural Gas,0,200,1,2,0.4,1,0.6,0.6,4,3,0,7.53,1,5.31,0,30,30,0,2050,2050
+15,13,GEN26,Solar PV,UtilityPV,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+15,13,GEN27,Wind,LandbasedWind,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+16,1,GEN28,Solar PV,UtilityPV,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+18,1,GEN29,Wind,LandbasedWind,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+22,8,GEN30,Natural Gas CC-CCS,Natural Gas,0,100,1,2,0.4,1,0.6,0.6,4,3,0,7.53,1,5.31,0,30,30,0,2050,2050
+22,8,GEN31,Solar PV,UtilityPV,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050
+20,8,GEN32,Solar PV,UtilityPV,0,100,2,50000,0,1,1,1,1,1,1,0,0,0,0,30,30,0,2050,2050

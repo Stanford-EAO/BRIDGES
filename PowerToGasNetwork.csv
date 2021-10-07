@@ -1,0 +1,13 @@
+Node_ELEC,Node_GAS,Dem_ID,Prime Mover,Existing Units [no.],Unit Size [MW],Max New Units Annual [units/year],Max New Units Total [no.],Pmin [p.u.],Pmax [p.u.],Ramp Down Rate [p.u.],Ramp Up Rate [p.u.],Min Up Time [hours],Min Down Time [hours],P2G Efficiency [MJ gas/MJ elec],P2L Efficiency [MJ LPG/MJ elec],Economic Lifetime [years],Lifetime [years],Biomethane [bin.],Biomass [bin.],Install Year,Forced Retirement,MoleFrac_CH4 [%],MoleFrac_H2 [%]
+17,5,P2G1,Biomethane,0,100,2,10,0,1,1,1,1,1,1,0,20,20,1,1,2050,2050,1,0
+23,20,P2G2,Biomethane,0,100,2,10,0,1,1,1,1,1,1,0,20,20,1,1,2050,2050,1,0
+14,15,P2G3,Electrolysis,0,100,2,20,0,1,1,1,1,1,0.7,0,20,20,0,0,2050,2050,0,1
+9,10,P2G4,Electrolysis,0,100,2,30,0,1,1,1,1,1,0.7,0,20,20,0,0,2050,2050,0,1
+17,3,P2G5,Electrolysis,0,100,2,10,0,1,1,1,1,1,0.7,0,20,20,0,0,2050,2050,0,1
+23,22,P2G6,Electrolysis,0,100,2,10,0,1,1,1,1,1,0.7,0,20,20,0,0,2050,2050,0,1
+2,17,P2G7,Electrolysis,0,100,2,10,0,1,1,1,1,1,0.7,0,20,20,0,0,2050,2050,0,1
+14,15,P2G8,Net-zero CH4,0,100,2,20,0,1,1,1,1,1,0.5,0,20,20,0,0,2050,2050,1,0
+9,10,P2G9,Net-zero CH4,0,100,2,30,0,1,1,1,1,1,0.5,0,20,20,0,0,2050,2050,1,0
+17,3,P2G10,Net-zero CH4,0,100,2,10,0,1,1,1,1,1,0.5,0,20,20,0,0,2050,2050,1,0
+23,22,P2G11,Net-zero CH4,0,100,2,10,0,1,1,1,1,1,0.5,0,20,20,0,0,2050,2050,1,0
+2,17,P2G12,Net-zero CH4,0,100,2,10,0,1,1,1,1,1,0.5,0,20,20,0,0,2050,2050,1,0

@@ -1,0 +1,15 @@
+Node_ELEC,Node_GAS,Storage_ID,Prime Mover,Existing Units [no.],Unit Size [MW],Max New Units Annual [units/year],Max New Units Total [no.],Duration [hours],Charge efficiency [%],Discharge efficiency [%],Loss efficiency [%],Economic Lifetime [years],Lifetime [years],Install Year,Forced Retirement
+1,1,BAT1,Li-ion battery,0,10,5,200,4,0.92,0.92,0.000013889,15,15,2050,2050
+1,1,BAT2,Long-duration storage,0,50,2,20,720,0.6305,0.53,0.000000011,30,30,2050,2050
+11,1,BAT3,Li-ion battery,0,10,5,200,4,0.92,0.92,0.000013889,15,15,2050,2050
+11,1,BAT4,Long-duration storage,0,50,2,20,720,0.6305,0.53,0.000000011,30,30,2050,2050
+12,1,BAT5,Li-ion battery,0,10,5,200,4,0.92,0.92,0.000013889,15,15,2050,2050
+12,1,BAT6,Long-duration storage,0,50,2,20,720,0.6305,0.53,0.000000011,30,30,2050,2050
+17,1,BAT7,Li-ion battery,0,10,5,200,4,0.92,0.92,0.000013889,15,15,2050,2050
+17,1,BAT8,Long-duration storage,0,50,2,20,720,0.6305,0.53,0.000000011,30,30,2050,2050
+23,1,BAT9,Li-ion battery,0,10,5,200,4,0.92,0.92,0.000013889,15,15,2050,2050
+23,1,BAT10,Long-duration storage,0,50,2,20,720,0.6305,0.53,0.000000011,30,30,2050,2050
+18,1,BAT11,Li-ion battery,0,5,10,200,4,0.92,0.92,0.000013889,15,15,2050,2050
+3,1,BAT12,Li-ion battery,0,5,10,200,4,0.92,0.92,0.000013889,15,15,2050,2050
+2,1,BAT13,Li-ion battery,0,5,10,200,4,0.92,0.92,0.000013889,15,15,2050,2050
+20,1,BAT14,Li-ion battery,0,5,10,200,4,0.92,0.92,0.000013889,15,15,2050,2050

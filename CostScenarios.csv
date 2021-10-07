@@ -1,0 +1,36 @@
+Technology,Cost
+Li-ion battery,Mid
+Electrolysis,Mid
+Coal,Mid
+Natural Gas CC,Mid
+Nuclear,Mid
+Natural Gas CT,Mid
+Solar PV,Mid
+Wind,Mid
+Natural Gas CC-CCS,Mid
+Natural Gas,Mid
+UtilityPV,Mid
+LandbasedWind,Mid
+GasFiredWH,Mid
+ElecHeatPumpWH,Mid
+ElecHeatPump_SpaceHeat,Mid
+HybridElecHeatPump_SpaceHeat,Mid
+LPGHybridElecHeatPump_SpaceHeat,Mid
+GasFurnace_SpaceHeat,Mid
+GasRange_Res,Mid
+ElecInduction_Res,Mid
+GasRange_Comm,Mid
+ElecInduction_Comm,Mid
+GasFurnace_SpaceHeatComm,Mid
+LPGHybridElecHeatPump_SpaceHeatComm,Mid
+HybridElecHeatPump_SpaceHeatComm,Mid
+ElecHeatPump_SpaceHeatComm,Mid
+GasFiredWHComm,Mid
+ElecHeatPumpWHComm,Mid
+Net-zero CH4,Mid
+Biomethane,Mid
+Gasification,Mid
+BTL,Mid
+PTL,Mid
+Long-duration storage,Mid
+Underground gas storage,Mid
