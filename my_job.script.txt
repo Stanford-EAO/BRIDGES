@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#SBATCH --job-name=BRIDGES
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=youremail@stanford.edu
+
+#SBATCH --time=0:30:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --mem=4GB
+#SBATCH --cpus-per-task=8
+#SBATCH --partition=serc
+
+
+# Load modules here
+ml load julia
+ml load gurobi
+
+# Run your script
+srun julia BRIDGES_v0.jl
