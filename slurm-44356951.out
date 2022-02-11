@@ -1,0 +1,39 @@
+    Updating registry at `~/.julia/registries/General`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+ERROR: LoadError: MethodError: no method matching joinpath(::typeof(dirname))
+Closest candidates are:
+  joinpath(!Matched::AbstractString) at path.jl:251
+  joinpath(!Matched::AbstractString, !Matched::AbstractString...) at path.jl:296
+  joinpath(!Matched::FilePathsBase.AbstractPath, !Matched::Union{AbstractString, FilePathsBase.AbstractPath}...) at /home/users/xxu346/.julia/packages/FilePathsBase/qgXdE/src/aliases.jl:16
+Stacktrace:
+ [1] stat(path::Function)
+   @ Base.Filesystem ./stat.jl:109
+ [2] ispath(path::Function)
+   @ Base.Filesystem ./stat.jl:311
+ [3] mk_out_dir()
+   @ Main ~/BRIDGES/BRIDGES_v0.jl:29
+ [4] top-level scope
+   @ ~/BRIDGES/BRIDGES_v0.jl:34
+in expression starting at /home/users/xxu346/BRIDGES/BRIDGES_v0.jl:34
+srun: error: sh03-14n17: task 0: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=44356951.0

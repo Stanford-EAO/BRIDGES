@@ -1,0 +1,64 @@
+Network 
+Cold
+WithAppDecisions
+MidEI
+MidBuild
+Nodal GasQuality
+Mid Biomethane
+Low Industrials
+Low buildingretrofits
+NoOffsets
+NoGasDistRet
+Mid Cost Clean Elec
+Mid Cost Clean Gas
+Estimated Revenue Requirement = 19900000 per year
+Estimated Ratebase = 1.3776923076923075e8
+BAU Gas Costs = 1.954491862568545e7
+ShutDown Gas Costs = [3.0125538461538464e7, 0.0, 0.0, 0.0, 0.0]
+BAU Gas Costs = 1.9110412500855714e7
+ShutDown Gas Costs = [2.3746405594405595e7, 8.216055944055943e6, 0.0, 0.0, 0.0]
+BAU Gas Costs = 1.8686660944391694e7
+ShutDown Gas Costs = [1.9149923076923072e7, 1.0883769230769228e7, 3.765692307692308e6, 0.0, 0.0]
+BAU Gas Costs = 1.8273397767316706e7
+ShutDown Gas Costs = [1.6322373626373624e7, 1.0942813186813187e7, 6.219296703296704e6, 2.1518241758241765e6, 0.0]
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+Gurobi Optimizer version 9.0.3 build v9.0.3rc0 (linux64)
+Optimize a model with 4866204 rows, 369845 columns and 31156946 nonzeros
+Model fingerprint: 0x56154592
+Model has 1440 quadratic constraints
+Coefficient statistics:
+  Matrix range     [1e-05, 2e+06]
+  QMatrix range    [1e+00, 1e+00]
+  QLMatrix range   [3e+03, 1e+05]
+  Objective range  [1e-03, 8e+06]
+  Bounds range     [1e+00, 3e+01]
+  RHS range        [1e-02, 4e+06]
+Presolve removed 4224487 rows and 144796 columns (presolve time = 5s) ...
+Presolve removed 4274967 rows and 144796 columns
+Presolve time: 5.98s
+Presolved: 594117 rows, 274009 columns, 3992625 nonzeros
+Presolved model has 720 second-order cone constraints
+Ordering time: 11.16s
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 44929359 ON sh03-14n19 CANCELLED AT 2022-02-11T15:43:34 ***
+slurmstepd: error: *** STEP 44929359.0 ON sh03-14n19 CANCELLED AT 2022-02-11T15:43:34 ***
+
+signal (15): Terminated
+in expression starting at /home/users/xxu346/BRIDGES/BRIDGES_v0.jl:1672

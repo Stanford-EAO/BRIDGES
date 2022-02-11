@@ -1,0 +1,4 @@
+sbatch my_job.script
+squeue -u xxu346
+sh_part
+scancel <job_id>

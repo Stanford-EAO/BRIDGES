@@ -1,0 +1,271 @@
+    Updating registry at `~/.julia/registries/General`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+Network 
+Cold
+WithAppDecisions
+MidEI
+MidBuild
+Nodal GasQuality
+Mid Biomethane
+Low Industrials
+Low buildingretrofits
+NoOffsets
+NoGasDistRet
+Mid Cost Clean Elec
+Mid Cost Clean Gas
+Estimated Revenue Requirement = 19900000 per year
+Estimated Ratebase = 1.3776923076923075e8
+BAU Gas Costs = 1.954491862568545e7
+ShutDown Gas Costs = [3.0125538461538464e7, 0.0, 0.0, 0.0, 0.0]
+BAU Gas Costs = 1.9110412500855714e7
+ShutDown Gas Costs = [2.3746405594405595e7, 8.216055944055943e6, 0.0, 0.0, 0.0]
+BAU Gas Costs = 1.8686660944391694e7
+ShutDown Gas Costs = [1.9149923076923072e7, 1.0883769230769228e7, 3.765692307692308e6, 0.0, 0.0]
+BAU Gas Costs = 1.8273397767316706e7
+ShutDown Gas Costs = [1.6322373626373624e7, 1.0942813186813187e7, 6.219296703296704e6, 2.1518241758241765e6, 0.0]
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+┌ Warning: Axis contains one element: 1. If intended, you can safely ignore this warning. To explicitly pass the axis with one element, pass `[1]` instead of `1`.
+└ @ JuMP.Containers ~/.julia/packages/JuMP/lnUbA/src/Containers/DenseAxisArray.jl:166
+Gurobi Optimizer version 9.0.3 build v9.0.3rc0 (linux64)
+Optimize a model with 4735499 rows, 313555 columns and 30546979 nonzeros
+Model fingerprint: 0x5bb4bdad
+Model has 1200 quadratic constraints
+Coefficient statistics:
+  Matrix range     [1e-05, 2e+06]
+  QMatrix range    [1e+00, 1e+00]
+  QLMatrix range   [3e+03, 1e+05]
+  Objective range  [1e-03, 8e+06]
+  Bounds range     [1e+00, 3e+01]
+  RHS range        [1e-02, 4e+06]
+Presolve removed 4178532 rows and 120746 columns (presolve time = 5s) ...
+Presolve removed 4220622 rows and 120746 columns
+Presolve time: 6.01s
+Presolved: 517277 rows, 233609 columns, 3468473 nonzeros
+Presolved model has 600 second-order cone constraints
+Ordering time: 9.95s
+Elapsed ordering time = 11s
+Elapsed ordering time = 17s
+Elapsed ordering time = 21s
+Elapsed ordering time = 26s
+Elapsed ordering time = 30s
+Elapsed ordering time = 35s
+Ordering time: 35.82s
+
+Barrier statistics:
+ Dense cols : 428
+ AA' NZ     : 1.319e+08
+ Factor NZ  : 2.125e+08 (roughly 2.0 GBytes of memory)
+ Factor Ops : 2.804e+11 (roughly 1 second per iteration)
+ Threads    : 128
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   2.08060323e+13 -3.06037932e+14  2.33e+09 3.05e+04  1.12e+11    60s
+   1   2.05685389e+13 -3.06346367e+14  2.14e+09 2.67e+04  1.00e+11    66s
+   2   2.04347093e+13 -3.02761987e+14  1.97e+09 2.42e+04  9.17e+10    73s
+   3   2.02660908e+13 -2.99079108e+14  1.82e+09 2.16e+04  8.38e+10    81s
+   4   1.71526439e+13 -2.27652541e+14  1.44e+09 1.65e+04  5.57e+10    89s
+   5   1.38794378e+13 -1.43575327e+14  1.04e+09 1.05e+04  3.10e+10   100s
+   6   1.10482830e+13 -1.06238867e+14  7.39e+08 7.85e+03  1.91e+10   110s
+   7   8.94197276e+12 -6.30293398e+13  5.37e+08 4.73e+03  1.06e+10   121s
+   8   7.27332481e+12 -4.59712443e+13  4.02e+08 3.47e+03  6.92e+09   131s
+   9   5.41520004e+12 -2.85745074e+13  2.81e+08 2.18e+03  3.96e+09   141s
+  10   4.50516404e+12 -1.78040977e+13  2.29e+08 1.36e+03  2.66e+09   150s
+  11   1.62027364e+12 -6.32075252e+12  7.78e+07 4.81e+02  6.55e+08   161s
+  12   6.10697493e+11 -2.09257342e+12  2.71e+07 1.62e+02  1.85e+08   170s
+  13   3.64242922e+11 -1.30277947e+12  1.50e+07 1.01e+02  9.60e+07   178s
+  14   1.64965417e+11 -1.04924170e+12  6.60e+06 8.17e+01  4.13e+07   184s
+  15   5.71207631e+10 -2.84927190e+11  2.15e+06 2.25e+01  1.01e+07   191s
+  16   2.82421797e+10 -1.43912657e+11  1.14e+06 1.14e+01  3.56e+06   198s
+  17   1.50837525e+10 -8.35427860e+10  6.17e+05 6.58e+00  1.46e+06   205s
+  18   8.20506103e+09 -3.71337824e+10  3.54e+05 2.90e+00  5.26e+05   211s
+  19   3.93242747e+09 -2.59282541e+10  1.73e+05 2.01e+00  2.33e+05   217s
+  20   3.22349319e+09 -1.21409113e+10  1.42e+05 9.34e-01  1.26e+05   225s
+  21   2.10013177e+09 -5.13300855e+09  9.53e+04 3.76e-01  5.07e+04   233s
+  22   1.48478601e+09 -3.09985483e+09  6.85e+04 2.17e-01  2.76e+04   241s
+  23   1.01098651e+09 -2.35316805e+09  4.82e+04 1.63e-01  1.71e+04   250s
+  24   6.99880404e+08 -1.43602746e+09  3.39e+04 9.84e-02  9.31e+03   259s
+  25   4.15129364e+08 -1.06513763e+09  2.06e+04 7.25e-02  5.34e+03   267s
+  26   3.15836460e+08 -6.65323082e+08  1.57e+04 4.51e-02  3.29e+03   276s
+  27   2.62011210e+08 -4.52600669e+08  1.29e+04 3.07e-02  2.27e+03   285s
+  28   2.12314619e+08 -2.88161510e+08  1.00e+04 2.03e-02  1.48e+03   293s
+  29   1.72810323e+08 -2.00110237e+08  7.53e+03 1.47e-02  1.02e+03   302s
+  30   1.46105451e+08 -1.43092449e+08  5.90e+03 1.13e-02  7.52e+02   311s
+  31   1.35169902e+08 -1.02957014e+08  5.20e+03 8.87e-03  6.03e+02   319s
+  32   1.24453295e+08 -8.22920276e+07  4.55e+03 7.67e-03  5.11e+02   328s
+  33   1.17574690e+08 -5.79537108e+07  4.14e+03 6.21e-03  4.26e+02   338s
+  34   1.02112584e+08 -4.10280161e+07  3.17e+03 5.23e-03  3.32e+02   347s
+  35   9.42967884e+07 -2.71437892e+07  2.68e+03 4.42e-03  2.75e+02   356s
+  36   9.05863593e+07 -2.30850318e+07  2.46e+03 4.20e-03  2.55e+02   364s
+  37   8.79071168e+07 -5.37006335e+06  2.32e+03 3.04e-03  2.10e+02   372s
+  38   8.09536014e+07  1.58028552e+05  1.95e+03 2.62e-03  1.79e+02   381s
+  39   7.71827818e+07  1.09640671e+07  1.81e+03 1.82e-03  1.49e+02   390s
+  40   7.33540892e+07  1.76151983e+07  1.62e+03 1.40e-03  1.26e+02   399s
+  41   6.98416495e+07  2.05918048e+07  1.44e+03 1.21e-03  1.11e+02   409s
+  42   6.56080611e+07  2.59328615e+07  1.21e+03 9.24e-04  9.05e+01   418s
+  43   6.35217238e+07  2.63972336e+07  1.11e+03 9.04e-04  8.44e+01   426s
+  44   6.52582111e+07  2.70185064e+07  9.42e+02 8.75e-04  8.17e+01   435s
+  45   6.27339344e+07  3.02962859e+07  8.39e+02 6.98e-04  6.99e+01   446s
+  46   6.04379350e+07  3.11313410e+07  7.36e+02 6.57e-04  6.28e+01   455s
+  47   5.84340092e+07  3.21398148e+07  5.94e+02 6.11e-04  5.49e+01   464s
+  48   5.77351520e+07  3.53951681e+07  5.54e+02 4.44e-04  4.76e+01   472s
+  49   5.74733902e+07  3.57792925e+07  5.38e+02 4.30e-04  4.64e+01   482s
+  50   5.95556549e+07  3.59216669e+07  5.61e+02 4.26e-04  4.97e+01   489s
+  51   5.70571597e+07  3.64811886e+07  4.64e+02 3.96e-04  4.27e+01   498s
+  52   5.63846518e+07  3.80824552e+07  4.36e+02 3.26e-04  3.87e+01   507s
+  53   5.61670955e+07  3.83735487e+07  4.24e+02 3.16e-04  3.78e+01   515s
+  54   5.56168336e+07  3.88528791e+07  3.98e+02 2.97e-04  3.57e+01   524s
+  55   5.48572087e+07  3.97740600e+07  3.69e+02 2.58e-04  3.25e+01   532s
+  56   5.47768463e+07  3.99639808e+07  3.55e+02 2.51e-04  3.18e+01   541s
+  57   5.37322920e+07  4.02695527e+07  3.23e+02 2.40e-04  2.91e+01   549s
+  58   5.28387987e+07  4.18397512e+07  2.87e+02 1.71e-04  2.44e+01   558s
+  59   5.18197832e+07  4.26920981e+07  2.42e+02 1.39e-04  2.04e+01   566s
+  60   5.13905503e+07  4.31018884e+07  2.20e+02 1.24e-04  1.86e+01   575s
+  61   5.08297402e+07  4.37963885e+07  1.95e+02 9.83e-05  1.61e+01   584s
+  62   5.14287927e+07  4.40296882e+07  1.95e+02 9.02e-05  1.66e+01   593s
+  63   5.12296510e+07  4.44177469e+07  1.83e+02 7.74e-05  1.55e+01   602s
+  64   5.05782957e+07  4.47169752e+07  1.57e+02 6.76e-05  1.34e+01   611s
+  65   5.04714397e+07  4.50261754e+07  1.52e+02 5.74e-05  1.26e+01   620s
+  66   5.02155046e+07  4.52287824e+07  1.39e+02 5.22e-05  1.16e+01   629s
+  67   5.00645643e+07  4.53360236e+07  1.32e+02 4.96e-05  1.11e+01   637s
+  68   4.99550643e+07  4.54502650e+07  1.26e+02 4.71e-05  1.06e+01   646s
+  69   4.97744993e+07  4.55154085e+07  1.18e+02 4.57e-05  1.00e+01   655s
+  70   4.95182769e+07  4.58758171e+07  1.06e+02 3.54e-05  8.77e+00   665s
+  71   4.90754040e+07  4.62387480e+07  8.54e+01 2.61e-05  6.93e+00   673s
+  72   4.89782827e+07  4.63231545e+07  8.01e+01 2.43e-05  6.51e+00   682s
+  73   4.86577999e+07  4.65288428e+07  6.51e+01 1.96e-05  5.26e+00   692s
+  74   4.85427860e+07  4.67005313e+07  5.91e+01 1.54e-05  4.64e+00   701s
+  75   4.83570482e+07  4.68213384e+07  4.91e+01 1.29e-05  3.87e+00   710s
+  76   4.82313820e+07  4.68898328e+07  4.25e+01 1.14e-05  3.37e+00   719s
+  77   4.82144700e+07  4.69674007e+07  4.12e+01 9.96e-06  3.21e+00   727s
+  78   4.80841185e+07  4.69795263e+07  3.67e+01 9.74e-06  2.86e+00   736s
+  79   4.80311966e+07  4.71090340e+07  3.39e+01 6.98e-06  2.50e+00   745s
+  80   4.79039602e+07  4.71731671e+07  2.59e+01 5.82e-06  1.95e+00   754s
+  81   4.78429866e+07  4.72554971e+07  2.20e+01 4.37e-06  1.61e+00   763s
+  82   4.78324030e+07  4.72681400e+07  2.07e+01 4.20e-06  1.54e+00   772s
+  83   4.77822598e+07  4.73020725e+07  1.73e+01 3.60e-06  1.30e+00   781s
+  84   4.77336738e+07  4.73705613e+07  1.44e+01 2.47e-06  1.03e+00   790s
+  85   4.76914204e+07  4.74136236e+07  1.17e+01 1.81e-06  8.09e-01   799s
+  86   4.76640194e+07  4.74345026e+07  9.87e+00 1.48e-06  6.77e-01   807s
+  87   4.76273502e+07  4.74425229e+07  7.45e+00 1.34e-06  5.28e-01   816s
+  88   4.75939530e+07  4.74569448e+07  5.33e+00 1.11e-06  3.85e-01   825s
+  89   4.75815135e+07  4.74752088e+07  4.53e+00 7.20e-07  3.12e-01   834s
+  90   4.75691369e+07  4.74804811e+07  3.72e+00 6.42e-07  2.58e-01   843s
+  91   4.75560274e+07  4.74865655e+07  2.86e+00 5.65e-07  2.01e-01   852s
+  92   4.75455000e+07  4.74956196e+07  2.16e+00 4.12e-07  1.48e-01   861s
+  93   4.75399417e+07  4.75016084e+07  1.80e+00 2.81e-07  1.18e-01   869s
+  94   4.75310054e+07  4.75066875e+07  1.17e+00 1.95e-07  7.62e-02   878s
+  95   4.75279106e+07  4.75094442e+07  9.57e-01 1.60e-07  6.03e-02   887s
+  96   4.75262759e+07  4.75103530e+07  8.39e-01 1.24e-07  5.24e-02   894s
+  97   4.75244500e+07  4.75112073e+07  7.06e-01 1.13e-07  4.39e-02   901s
+  98   4.75236623e+07  4.75113444e+07  6.48e-01 1.09e-07  4.06e-02   907s
+  99   4.75231804e+07  4.75118319e+07  6.12e-01 9.35e-08  3.79e-02   914s
+ 100   4.75216331e+07  4.75127182e+07  5.00e-01 1.09e-07  3.06e-02   921s
+ 101   4.75211333e+07  4.75130962e+07  4.63e-01 9.04e-08  2.79e-02   927s
+ 102   4.75195938e+07  4.75133597e+07  3.49e-01 7.75e-08  2.13e-02   933s
+ 103   4.75192502e+07  4.75137826e+07  3.23e-01 5.69e-08  1.93e-02   940s
+ 104   4.75188741e+07  4.75140767e+07  2.95e-01 7.39e-08  1.74e-02   948s
+ 105   4.75184520e+07  4.75140952e+07  2.64e-01 6.60e-08  1.57e-02   956s
+ 106   4.75168755e+07  4.75143846e+07  1.50e-01 5.35e-08  8.98e-03   968s
+ 107   4.75163284e+07  4.75146299e+07  1.10e-01 3.92e-08  6.40e-03   979s
+ 108   4.75161337e+07  4.75146763e+07  9.62e-02 7.44e-08  5.48e-03   994s
+ 109   4.75158725e+07  4.75146939e+07  7.67e-02 6.49e-08  4.40e-03  1009s
+ 110   4.75156884e+07  4.75147166e+07  6.31e-02 5.63e-08  3.63e-03  1021s
+ 111   4.75156527e+07  4.75147257e+07  6.06e-02 5.27e-08  3.47e-03  1038s
+ 112   4.75154181e+07  4.75147443e+07  4.28e-02 4.37e-08  2.48e-03  1053s
+ 113   4.75151886e+07  4.75147692e+07  2.62e-02 3.22e-08  1.52e-03  1069s
+ 114   4.75151147e+07  4.75148006e+07  2.05e-02 1.42e-08  1.17e-03  1087s
+ 115   4.75150677e+07  4.75148061e+07  1.67e-02 1.70e-08  9.60e-04  1113s
+ 116   4.75150496e+07  4.75148112e+07  1.51e-02 3.85e-08  8.73e-04  1137s
+ 117   4.75150443e+07  4.75148125e+07  1.47e-02 3.80e-08  8.49e-04  1174s
+ 118   4.75150046e+07  4.75148199e+07  1.11e-02 3.75e-08  6.46e-04  1205s
+ 119   4.75149451e+07  4.75148318e+07  6.88e-03 3.16e-07  3.89e-04  1245s
+ 120   4.75149471e+07  4.75148318e+07  2.69e-02 3.16e-07  3.92e-04  1313s
+ 121   4.75149408e+07  4.75148419e+07  2.49e-02 2.06e-07  3.57e-04  1346s
+ 122   4.75149380e+07  4.75148431e+07  2.38e-02 1.93e-07  3.42e-04  1377s
+ 123   4.75149103e+07  4.75148499e+07  1.55e-02 1.25e-07  2.23e-04  1427s
+ 124   4.75149103e+07  4.75148499e+07  1.55e-02 1.25e-07  2.23e-04  1454s
+ 125   4.75149103e+07  4.75148499e+07  1.55e-02 1.24e-07  2.23e-04  1478s
+ 126   4.75149108e+07  4.75148499e+07  1.55e-02 1.24e-07  2.23e-04  1524s
+ 127   4.75149108e+07  4.75148499e+07  1.55e-02 1.24e-07  2.23e-04  1558s
+ 128   4.75149108e+07  4.75148499e+07  1.55e-02 1.24e-07  2.23e-04  1596s
+ 129   4.75149107e+07  4.75148499e+07  1.55e-02 1.24e-07  2.23e-04  1625s
+ 130   4.75149107e+07  4.75148499e+07  1.55e-02 1.24e-07  2.22e-04  1653s
+ 131   4.75149102e+07  4.75148501e+07  1.53e-02 1.19e-03  2.20e-04  1688s
+ 132   4.75149040e+07  4.75148518e+07  1.34e-02 1.02e-03  1.92e-04  1730s
+ 133   4.75149040e+07  4.75148518e+07  1.34e-02 1.02e-03  1.92e-04  1787s
+ 134   4.75149040e+07  4.75148518e+07  1.34e-02 1.56e-03  1.92e-04  1817s
+ 135   4.75149019e+07  4.75148529e+07  1.27e-02 1.39e-03  1.82e-04  1842s
+ 136   4.75149019e+07  4.75148529e+07  1.27e-02 1.39e-03  1.82e-04  1868s
+ 137   4.75149019e+07  4.75148529e+07  1.27e-02 1.39e-03  1.82e-04  1909s
+ 138   4.75149008e+07  4.75148535e+07  1.23e-02 1.33e-03  1.77e-04  1939s
+ 139   4.75149008e+07  4.75148535e+07  1.23e-02 1.33e-03  1.77e-04  1970s
+ 140   4.75149008e+07  4.75148535e+07  1.23e-02 1.05e-02  1.77e-04  2011s
+ 141   4.75149008e+07  4.75148535e+07  1.23e-02 1.05e-02  1.77e-04  2042s
+ 142   4.75149008e+07  4.75148535e+07  1.23e-02 1.04e-02  1.76e-04  2074s
+
+Barrier solved model in 142 iterations and 2073.71 seconds
+Optimal objective 4.75149451e+07
+
+
+User-callback calls 152010, time in user-callback 0.25 sec
+ERROR: LoadError: SystemError: opening file "/home/users/xxu346/BRIDGES/output/20220203-110758/Data/NetworkColdMidbiomethaneLowindustrialsLowbuildingretrofitsNodalGasQualityApplianceResults_WithAppDecisionsNoOffsetsNoGasDistRetMidCostElecMidCostGasMidNETsCost.csv": No such file or directory
+Stacktrace:
+  [1] systemerror(p::String, errno::Int32; extrainfo::Nothing)
+    @ Base ./error.jl:168
+  [2] #systemerror#62
+    @ ./error.jl:167 [inlined]
+  [3] systemerror
+    @ ./error.jl:167 [inlined]
+  [4] open(fname::String; lock::Bool, read::Nothing, write::Nothing, create::Nothing, truncate::Bool, append::Nothing)
+    @ Base ./iostream.jl:293
+  [5] open(fname::String, mode::String; lock::Bool)
+    @ Base ./iostream.jl:355
+  [6] open(fname::String, mode::String)
+    @ Base ./iostream.jl:355
+  [7] with(f::CSV.var"#93#94"{Bool, Bool, Tables.Schema{(:Column1, :Column2, :Column3, :Column4, :Column5, :Column6, :Column7, :Column8, :Column9, :Column10, :Column11, :Column12, :Column13, :Column14, :Column15), NTuple{15, Float64}}, Tables.MatrixRowTable{LinearAlgebra.Adjoint{Float64, Matrix{Float64}}}, CSV.Options{UInt8, UInt8, Nothing, Tuple{}, typeof(CSV._identity)}, Vector{UInt8}, Int64, Int64, NTuple{15, Symbol}}, io::Any, append::Bool, compress::Bool)
+    @ CSV ~/.julia/packages/CSV/0Elut/src/write.jl:295
+  [8] #write#92
+    @ ~/.julia/packages/CSV/0Elut/src/write.jl:225 [inlined]
+  [9] write(file::String, itr::Tables.MatrixTable{LinearAlgebra.Adjoint{Float64, Matrix{Float64}}}; delim::Char, quotechar::Char, openquotechar::Nothing, closequotechar::Nothing, escapechar::Char, newline::Char, decimal::Char, dateformat::Nothing, quotestrings::Bool, missingstring::String, transform::typeof(CSV._identity), bom::Bool, append::Bool, compress::Bool, writeheader::Bool, partition::Bool, kwargs::Base.Iterators.Pairs{Union{}, Union{}, Tuple{}, NamedTuple{(), Tuple{}}})
+    @ CSV ~/.julia/packages/CSV/0Elut/src/write.jl:210
+ [10] top-level scope
+    @ ~/BRIDGES/BRIDGES_v0.jl:1832
+in expression starting at /home/users/xxu346/BRIDGES/BRIDGES_v0.jl:1832
+srun: error: sh03-14n22: task 0: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=44480088.0

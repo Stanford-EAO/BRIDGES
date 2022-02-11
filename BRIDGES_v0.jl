@@ -12,15 +12,26 @@
 #
 ################################################################################
 import Pkg
-Pkg.add("DataFrames")
-Pkg.add("CSV")
-Pkg.add("Clustering")
-Pkg.add("JuMP")
-Pkg.add("Distances")
-Pkg.add("Gurobi")
-Pkg.add("Tables")
+# Pkg.add("DataFrames")
+# Pkg.add("CSV")
+# Pkg.add("Clustering")
+# Pkg.add("JuMP")
+# Pkg.add("Distances")
+# Pkg.add("Gurobi")
+# Pkg.add("Tables")
 #Pkg.add("DelimitedFiles")
-using DataFrames, CSV, Tables, Clustering, JuMP, Distances, Gurobi
+using DataFrames, CSV, Tables, Clustering, JuMP, Distances, Gurobi, Dates
+
+# creates output folder automatically
+function mk_out_dir()
+    timestamp = Dates.format(now(), "YYYYmmdd-HHMMSS")
+    dir_name = joinpath(@__DIR__, "output", "$timestamp")
+    @assert !ispath(dir_name) "File name already taken!"
+    mkpath(dir_name)
+    return dir_name
+end
+
+top_dir = mk_out_dir() * "/"
 
 # Toggles to turn on/off different model relaxations and functionality
 
@@ -50,7 +61,7 @@ liquids_allowed = 0
 
 # Clustering parameters
 T_inv = 5               # Number of investment time periods modeled
-N_Periods = 5         # Number of representative operational time slices modeled for each investment period
+N_Periods = 6         # Number of representative operational time slices modeled for each investment period
 HOURS_PER_PERIOD = 24   # Number of hourly time steps in each rep. op. time slice
 # Clustering technique to use for generating representative days
 # Options include:
@@ -1818,14 +1829,14 @@ for i = 1:T_inv
 end
 
 
-CSV.write("$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityApplianceResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(ApplianceDecisions'), writeheader = true)
-CSV.write("$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityEmissionsandCostResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(EmissionsAndCosts'), writeheader = true)
-CSV.write("$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityCapacityBuildResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(CapacityBuilt'), writeheader = true)
-CSV.write("$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityCapacityRetiredResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(CapacityRetired'), writeheader = true)
-CSV.write("$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityGenerationResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(GenerationSave'), writeheader = true)
-CSV.write("$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityHourlyGensFullResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(HourlyGenFullSave'), writeheader = true)
-CSV.write("$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityHourlyLoadFullBaseline_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(HourlyLoadFullSave'), writeheader = true)
-CSV.write("$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityHourlyTransmissionFullResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(HourlyTransmissionFullSave'), writeheader = true)
+CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityApplianceResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(ApplianceDecisions'), writeheader = true)
+CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityEmissionsandCostResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(EmissionsAndCosts'), writeheader = true)
+CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityCapacityBuildResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(CapacityBuilt'), writeheader = true)
+CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityCapacityRetiredResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(CapacityRetired'), writeheader = true)
+CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityGenerationResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(GenerationSave'), writeheader = true)
+CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityHourlyGensFullResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(HourlyGenFullSave'), writeheader = true)
+CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityHourlyLoadFullBaseline_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(HourlyLoadFullSave'), writeheader = true)
+CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityHourlyTransmissionFullResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(HourlyTransmissionFullSave'), writeheader = true)
 
 print("Success!")
 

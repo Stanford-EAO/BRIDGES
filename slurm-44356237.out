@@ -1,0 +1,31 @@
+    Updating registry at `~/.julia/registries/General`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.6/Project.toml`
+  No Changes to `~/.julia/environments/v1.6/Manifest.toml`
+ERROR: LoadError: UndefVarError: Dates not defined
+Stacktrace:
+ [1] mk_out_dir()
+   @ Main ~/BRIDGES/BRIDGES_v0.jl:27
+ [2] top-level scope
+   @ ~/BRIDGES/BRIDGES_v0.jl:34
+in expression starting at /home/users/xxu346/BRIDGES/BRIDGES_v0.jl:34
+srun: error: sh03-14n17: task 0: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=44356237.0
