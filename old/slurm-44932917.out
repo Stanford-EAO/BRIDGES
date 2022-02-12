@@ -1,0 +1,20 @@
+Network 
+Cold
+WithAppDecisions
+MidEI
+MidBuild
+Nodal GasQuality
+Mid Biomethane
+Low Industrials
+Low buildingretrofits
+NoOffsets
+NoGasDistRet
+Mid Cost Clean Elec
+Mid Cost Clean Gas
+ERROR: LoadError: syntax: "*" is not a unary operator
+Stacktrace:
+ [1] top-level scope
+   @ ~/BRIDGES/src/BRIDGES_v0.jl:250
+in expression starting at /home/users/xxu346/BRIDGES/src/BRIDGES_v0.jl:250
+srun: error: sh03-14n19: task 0: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=44932917.0

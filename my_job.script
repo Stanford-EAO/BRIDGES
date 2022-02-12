@@ -17,4 +17,4 @@ ml load julia
 ml load gurobi
 
 # Run your script
-srun julia BRIDGES_v0.jl
+srun julia src/BRIDGES_v0.jl

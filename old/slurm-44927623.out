@@ -137,3 +137,57 @@ Iter       Primal          Dual         Primal    Dual     Compl     Time
   51   5.83688552e+07  3.34792677e+07  4.97e+02 1.34e-02  4.64e+01  1456s
   52   5.83688647e+07  3.34792870e+07  4.97e+02 7.84e+07  4.64e+01  1541s
   53   5.83688647e+07  3.34792870e+07  4.97e+02 7.84e+07  4.64e+01  1594s
+  54   5.83688647e+07  3.34792870e+07  4.97e+02 7.84e+07  4.64e+01  1641s
+  55   5.83688647e+07  3.34792870e+07  4.97e+02 7.84e+07  4.64e+01  1718s
+  56   5.83688647e+07  3.34792870e+07  4.97e+02 7.84e+07  4.64e+01  1783s
+  57   5.83688647e+07  3.34792870e+07  4.97e+02 7.84e+07  4.64e+01  1863s
+  58   5.83688647e+07  3.34792870e+07  4.97e+02 7.84e+07  4.64e+01  1920s
+  59   5.83688647e+07  3.34792870e+07  4.97e+02 7.84e+07  4.64e+01  1971s
+  60   5.83688647e+07  3.34792866e+07  4.97e+02 7.84e+07  4.64e+01  2040s
+
+Barrier performed 60 iterations in 2039.90 seconds
+Numerical trouble encountered
+
+
+User-callback calls 128871, time in user-callback 1.06 sec
+ERROR: LoadError: Result index of attribute MathOptInterface.VariablePrimal(1) out of bounds. There are currently 0 solution(s) in the model.
+Stacktrace:
+  [1] check_result_index_bounds
+    @ ~/.julia/packages/MathOptInterface/QxT5e/src/attributes.jl:170 [inlined]
+  [2] get(model::Gurobi.Optimizer, attr::MathOptInterface.VariablePrimal, x::MathOptInterface.VariableIndex)
+    @ Gurobi ~/.julia/packages/Gurobi/A9YqC/src/MOI_wrapper/MOI_wrapper.jl:2884
+  [3] get(b::MathOptInterface.Bridges.LazyBridgeOptimizer{Gurobi.Optimizer}, attr::MathOptInterface.VariablePrimal, index::MathOptInterface.VariableIndex)
+    @ MathOptInterface.Bridges ~/.julia/packages/MathOptInterface/QxT5e/src/Bridges/bridge_optimizer.jl:1068
+  [4] get(model::MathOptInterface.Utilities.CachingOptimizer{MathOptInterface.Bridges.LazyBridgeOptimizer{Gurobi.Optimizer}, MathOptInterface.Utilities.UniversalFallback{MathOptInterface.Utilities.Model{Float64}}}, attr::MathOptInterface.VariablePrimal, index::MathOptInterface.VariableIndex)
+    @ MathOptInterface.Utilities ~/.julia/packages/MathOptInterface/QxT5e/src/Utilities/cachingoptimizer.jl:845
+  [5] _moi_get_result(::MathOptInterface.Utilities.CachingOptimizer{MathOptInterface.Bridges.LazyBridgeOptimizer{Gurobi.Optimizer}, MathOptInterface.Utilities.UniversalFallback{MathOptInterface.Utilities.Model{Float64}}}, ::MathOptInterface.VariablePrimal, ::Vararg{Any, N} where N)
+    @ JuMP ~/.julia/packages/JuMP/lnUbA/src/JuMP.jl:1226
+  [6] get(model::Model, attr::MathOptInterface.VariablePrimal, v::VariableRef)
+    @ JuMP ~/.julia/packages/JuMP/lnUbA/src/JuMP.jl:1275
+  [7] value(v::VariableRef; result::Int64)
+    @ JuMP ~/.julia/packages/JuMP/lnUbA/src/variables.jl:1001
+  [8] value
+    @ ~/.julia/packages/JuMP/lnUbA/src/variables.jl:1001 [inlined]
+  [9] _broadcast_getindex_evalf
+    @ ./broadcast.jl:648 [inlined]
+ [10] _broadcast_getindex
+    @ ./broadcast.jl:621 [inlined]
+ [11] getindex
+    @ ./broadcast.jl:575 [inlined]
+ [12] macro expansion
+    @ ./broadcast.jl:984 [inlined]
+ [13] macro expansion
+    @ ./simdloop.jl:77 [inlined]
+ [14] copyto!
+    @ ./broadcast.jl:983 [inlined]
+ [15] copyto!
+    @ ./broadcast.jl:936 [inlined]
+ [16] copy
+    @ ./broadcast.jl:908 [inlined]
+ [17] materialize(bc::Base.Broadcast.Broadcasted{Base.Broadcast.DefaultArrayStyle{2}, Nothing, typeof(value), Tuple{Matrix{VariableRef}}})
+    @ Base.Broadcast ./broadcast.jl:883
+ [18] top-level scope
+    @ ~/BRIDGES/BRIDGES_v0.jl:1681
+in expression starting at /home/users/xxu346/BRIDGES/BRIDGES_v0.jl:1681
+srun: error: sh03-14n23: task 0: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=44927623.0

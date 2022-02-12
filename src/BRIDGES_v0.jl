@@ -23,15 +23,19 @@ import Pkg
 using DataFrames, CSV, Tables, Clustering, JuMP, Distances, Gurobi, Dates
 
 # creates output folder automatically
-function mk_out_dir()
+function mk_dirs()
     timestamp = Dates.format(now(), "YYYYmmdd-HHMMSS")
-    dir_name = joinpath(@__DIR__, "output", "$timestamp")
-    @assert !ispath(dir_name) "File name already taken!"
-    mkpath(dir_name)
-    return dir_name
+    top_level_path = abspath(joinpath(@__DIR__, ".."))
+    
+    data_dir *= top_level_path * "data/"
+    out_dir = joinpath(top_level_path, "output", "$timestamp")
+    
+    @assert !ispath(out_dir) "File name already taken!"
+    mkpath(out_dir)
+    return out_dir * "/", data_dir *
 end
 
-top_dir = mk_out_dir() * "/"
+out_dir, data_dir *= mk_dirs()
 
 # Toggles to turn on/off different model relaxations and functionality
 
@@ -60,8 +64,8 @@ liquids_allowed = 0
 
 
 # Clustering parameters
-T_inv = 5               # Number of investment time periods modeled
-N_Periods = 6         # Number of representative operational time slices modeled for each investment period
+T_inv = 1               # Number of investment time periods modeled
+N_Periods = 1         # Number of representative operational time slices modeled for each investment period
 HOURS_PER_PERIOD = 24   # Number of hourly time steps in each rep. op. time slice
 # Clustering technique to use for generating representative days
 # Options include:
@@ -246,7 +250,7 @@ SLACK_NODE_Pressure = PRESSURE_MAX
 # Baseline Energy Demands
 ################################################################################
 # Import the baseline electrical demands [MWh/hr] across all system nodes
-D_Elec2 = CSV.read("BaselineElectricDemands$(system)$(region).csv",DataFrame)
+D_Elec2 = CSV.read(data_dir * "BaselineElectricDemands$(system)$(region).csv",DataFrame)
 
 NODES_ELEC = length(D_Elec2[1,:])       # Number of electrical nodes is specified based on the number of columns in D_Elec2
 # Set up a new array to hold electrical demand info.
@@ -256,7 +260,7 @@ for n = 1:NODES_ELEC
 end
 
 # Import the baseline gas demands [MWh/hr] across all system nodes
-D_Gas2 = CSV.read("BaselineGasDemands$(system)$(region).csv",DataFrame)
+D_Gas2 = CSV.read(data_dir * "BaselineGasDemands$(system)$(region).csv",DataFrame)
 
 NODES_GAS = length(D_Gas2[1,:])         # Number of gas nodes is specified based on the number of columns in D_Gas2
 # Set up a new array to hold gas demand info.
@@ -277,7 +281,7 @@ MAXSLACK[SLACK_NODE] = 10000    # [MW] (Arbitrarily large, but not so large as t
 ################################################################################
 # End-use appliance demands
 ################################################################################
-EndUseAppliances = CSV.read("EndUseAppliances$(system)$(num).csv",DataFrame)
+EndUseAppliances = CSV.read(data_dir * "EndUseAppliances$(system)$(num).csv",DataFrame)
 APPLIANCES = length(EndUseAppliances[:, :1])        # Number of appliance classes modeled
 ApplianceServices = EndUseAppliances[:,5]           # End-use services satisfied by each appliance class
 PrimeMover_APPLIANCES = EndUseAppliances[:,6]       # Technology type for each appliance class
@@ -305,7 +309,7 @@ end
 ################################################################################
 cumulativefailurefrac = zeros(APPLIANCES,T_inv,T_inv)
 failureProb = zeros(APPLIANCES,150)
-failureArchive = CSV.read("failureProb.csv",DataFrame)
+failureArchive = CSV.read(data_dir ** * "failureProb.csv",DataFrame)
 # First, calculate failure probabilities for each appliance class in each year of its lifetime from 1 to 50.
 for a = 1:APPLIANCES
     for i = 1:50
@@ -335,8 +339,8 @@ end
 ## Appliance level energy demand profiles (hourly)
 # In MWh/hr per unit, for each hour in a typical year; then must be clustered down
 ################################################################################
-ApplianceProfilesGAS2 = CSV.read("ApplianceProfiles_GAS$(system)$(region).csv",DataFrame)
-ApplianceProfilesELEC2 = CSV.read("ApplianceProfiles_ELEC$(system)$(region).csv",DataFrame)
+ApplianceProfilesGAS2 = CSV.read(data_dir * "ApplianceProfiles_GAS$(system)$(region).csv",DataFrame)
+ApplianceProfilesELEC2 = CSV.read(data_dir * "ApplianceProfiles_ELEC$(system)$(region).csv",DataFrame)
 #ApplianceProfilesLIQ2 = CSV.read("ApplianceProfiles_LPG$(system)$(region).csv",DataFrame)
 
 #ApplianceProfilesLIQ = zeros(8760,length(ApplianceProfilesLIQ2[1,:]))
@@ -442,7 +446,7 @@ AccDepGasSyst_FixedCosts[1,1] = RB_est
 ################################################################################
 # Transmission interchanges
 ################################################################################
-TransmissionLinks_ELEC = CSV.read("ElecTransmission$(system).csv",DataFrame)
+TransmissionLinks_ELEC = CSV.read(data_dir * "ElecTransmission$(system).csv",DataFrame)
 EDGES_ELEC = length(TransmissionLinks_ELEC[:,1])
 MAXFLOW_ELEC = TransmissionLinks_ELEC[:,3].*transmission_multiplier
 Line_Rating = TransmissionLinks_ELEC[:,4].*transmission_multiplier
@@ -452,7 +456,7 @@ MaxNewUnits_ElecTrans = TransmissionLinks_ELEC[:,7]
 CAPEX_ELECTrans = ElecTransmissionCapitalCosts.*Line_Rating
 FOM_ELECTrans = ElecTransmissionOperatingCosts.*Line_Rating
 
-TransmissionLinks_GAS = CSV.read("GasTransmission$(system).csv",DataFrame)
+TransmissionLinks_GAS = CSV.read(data_dir * "GasTransmission$(system).csv",DataFrame)
 EDGES_GAS = length(TransmissionLinks_GAS[:,1])
 MAXFLOW_GAS = TransmissionLinks_GAS[:,3]./10
 Diameter_Pipes = TransmissionLinks_GAS[:,4]  #[m]
@@ -513,8 +517,8 @@ C = C.*10^6
 ################################################################################
 ### Import set of energy supply/storage/demand units
 ################################################################################
-Generators = CSV.read("Generators$(system).csv",DataFrame)
-HourlyVRE2 = CSV.read("HourlyVRE$(system)$(region).csv",DataFrame)
+Generators = CSV.read(data_dir * "Generators$(system).csv",DataFrame)
+HourlyVRE2 = CSV.read(data_dir * "HourlyVRE$(system)$(region).csv",DataFrame)
 HourlyVRE = zeros(8760,length(HourlyVRE2[1,:]))
 for i = 1:length(HourlyVRE2[1,:])
     # Capacity factors must be greater than 0
@@ -545,7 +549,7 @@ StartupFuel = Generators[:,23]                  # [MMBtu/start]
 RetirementYear_GEN = min.(Generators[:,24]+Lifetime_GEN,Generators[:,25])
 CRF_GEN = (WACC.*(1+WACC).^EconomicLifetime_GEN)./((1+WACC).^EconomicLifetime_GEN .- 1)
 
-PowerToGas = CSV.read("PowerToGas$(system).csv",DataFrame)
+PowerToGas = CSV.read(data_dir * "PowerToGas$(system).csv",DataFrame)
 P2G = length(PowerToGas[:, :1])
 PrimeMover_P2G = PowerToGas[:,4]
 NumUnits_P2G = PowerToGas[:,5]                  # [units]
@@ -568,7 +572,7 @@ MoleFracs_P2G = Matrix(PowerToGas[:,23:24])             # [%]
 CRF_P2G = (WACC.*(1+WACC).^EconomicLifetime_P2G)./((1+WACC).^EconomicLifetime_P2G .- 1)
 RetirementYear_P2G = min.(PowerToGas[:,21]+Lifetime_P2G, PowerToGas[:,22])
 
-ElectricalStorage = CSV.read("Storage_ELEC$(system).csv",DataFrame)
+ElectricalStorage = CSV.read(data_dir * "Storage_ELEC$(system).csv",DataFrame)
 STORAGE_ELEC = length(ElectricalStorage[:, :1])
 PrimeMover_STORAGE_ELEC = ElectricalStorage[:,4]
 NumUnits_STORAGE_ELEC = ElectricalStorage[:,5]                  # [units]
@@ -584,7 +588,7 @@ Lifetime_STORAGE_ELEC = ElectricalStorage[:,14]                 # [years]
 CRF_STORAGE_ELEC = (WACC.*(1+WACC).^EconomicLifetime_STORAGE_ELEC)./((1+WACC).^EconomicLifetime_STORAGE_ELEC .- 1)
 RetirementYear_STORAGE_ELEC = min.(ElectricalStorage[:,15]+Lifetime_STORAGE_ELEC,ElectricalStorage[:,16])
 
-GasStorage = CSV.read("Storage_GAS$(system).csv",DataFrame)
+GasStorage = CSV.read(data_dir * "Storage_GAS$(system).csv",DataFrame)
 STORAGE_GAS = length(GasStorage[:, :1])
 PrimeMover_STORAGE_GAS = GasStorage[:,4]
 NumUnits_STORAGE_GAS = GasStorage[:,5]                          # [units]
@@ -631,10 +635,10 @@ LHV_P2G = sum(MoleFracs_P2G.*transpose(MolarMass.*LHV), dims = 2)./MolarMass_P2G
 ################################################################################
 ### CAPEX, FOM, VOM, and fuel costs
 ################################################################################
-CAPEXLookup = CSV.read("CAPEXLookup.csv",DataFrame)
-FOMLookup = CSV.read("FOMLookup.csv",DataFrame)
-VOMLookup = CSV.read("VOMLookup.csv",DataFrame)
-FuelCostLookup = CSV.read("FuelCostLookUp.csv",DataFrame)
+CAPEXLookup = CSV.read(data_dir * "CAPEXLookup.csv",DataFrame)
+FOMLookup = CSV.read(data_dir * "FOMLookup.csv",DataFrame)
+VOMLookup = CSV.read(data_dir * "VOMLookup.csv",DataFrame)
+FuelCostLookup = CSV.read(data_dir * "FuelCostLookUp.csv",DataFrame)
 
 CAPEX_GEN = zeros(T_inv,GEN)
 FOM_GEN = zeros(T_inv,GEN)
@@ -650,40 +654,40 @@ FOM_APPLIANCES = zeros(T_inv, APPLIANCES)
 
 ## Assign the appropriate cost scenario based on CleanElecCosts and CleanGasCosts
 ################################################################################
-CostScenarios = CSV.read("CostScenarios.csv",DataFrame)
+CostScenarios = CSV.read(data_dir * "CostScenarios.csv",DataFrame)
 if CleanElecCosts =="High"
     if CleanGasCosts == "Low"
-        global CostScenarios = CSV.read("CostScenarios_HighElecLowGas.csv",DataFrame)
+        global CostScenarios = CSV.read(data_dir * "CostScenarios_HighElecLowGas.csv",DataFrame)
     end
     if CleanGasCosts == "High"
-        global CostScenarios = CSV.read("CostScenarios_HighElecHighGas.csv",DataFrame)
+        global CostScenarios = CSV.read(data_dir * "CostScenarios_HighElecHighGas.csv",DataFrame)
     end
     if CleanGasCosts == "Mid"
-        global CostScenarios = CSV.read("CostScenarios_HighElecMidGas.csv",DataFrame)
+        global CostScenarios = CSV.read(data_dir * "CostScenarios_HighElecMidGas.csv",DataFrame)
     end
 end
 
 if CleanElecCosts =="Low"
     if CleanGasCosts == "Low"
-        global CostScenarios = CSV.read("CostScenarios_LowElecLowGas.csv",DataFrame)
+        global CostScenarios = CSV.read(data_dir * "CostScenarios_LowElecLowGas.csv",DataFrame)
     end
     if CleanGasCosts == "High"
-        global CostScenarios = CSV.read("CostScenarios_LowElecHighGas.csv",DataFrame)
+        global CostScenarios = CSV.read(data_dir * "CostScenarios_LowElecHighGas.csv",DataFrame)
     end
     if CleanGasCosts == "Mid"
-        global CostScenarios = CSV.read("CostScenarios_LowElecMidGas.csv",DataFrame)
+        global CostScenarios = CSV.read(data_dir * "CostScenarios_LowElecMidGas.csv",DataFrame)
     end
 end
 
 if CleanElecCosts =="Mid"
     if CleanGasCosts == "Low"
-        global CostScenarios = CSV.read("CostScenarios_MidElecLowGas.csv",DataFrame)
+        global CostScenarios = CSV.read(data_dir * "CostScenarios_MidElecLowGas.csv",DataFrame)
     end
     if CleanGasCosts == "High"
-        global CostScenarios = CSV.read("CostScenarios_MidElecHighGas.csv",DataFrame)
+        global CostScenarios = CSV.read(data_dir * "CostScenarios_MidElecHighGas.csv",DataFrame)
     end
     if CleanGasCosts == "Mid"
-        global CostScenarios = CSV.read("CostScenarios.csv",DataFrame)
+        global CostScenarios = CSV.read(data_dir * "CostScenarios.csv",DataFrame)
     end
 end
 
@@ -1829,14 +1833,14 @@ for i = 1:T_inv
 end
 
 
-CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityApplianceResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(ApplianceDecisions'), writeheader = true)
-CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityEmissionsandCostResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(EmissionsAndCosts'), writeheader = true)
-CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityCapacityBuildResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(CapacityBuilt'), writeheader = true)
-CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityCapacityRetiredResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(CapacityRetired'), writeheader = true)
-CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityGenerationResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(GenerationSave'), writeheader = true)
-CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityHourlyGensFullResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(HourlyGenFullSave'), writeheader = true)
-CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityHourlyLoadFullBaseline_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(HourlyLoadFullSave'), writeheader = true)
-CSV.write(top_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityHourlyTransmissionFullResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(HourlyTransmissionFullSave'), writeheader = true)
+CSV.write(out_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityApplianceResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(ApplianceDecisions'), writeheader = true)
+CSV.write(out_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityEmissionsandCostResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(EmissionsAndCosts'), writeheader = true)
+CSV.write(out_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityCapacityBuildResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(CapacityBuilt'), writeheader = true)
+CSV.write(out_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityCapacityRetiredResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(CapacityRetired'), writeheader = true)
+CSV.write(out_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityGenerationResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(GenerationSave'), writeheader = true)
+CSV.write(out_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityHourlyGensFullResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(HourlyGenFullSave'), writeheader = true)
+CSV.write(out_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityHourlyLoadFullBaseline_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(HourlyLoadFullSave'), writeheader = true)
+CSV.write(out_dir * "$(system)$(region)$(num)$(biomethane)biomethane$(industrials)industrials$(buildingretrofits)buildingretrofits$(GasQuality)GasQualityHourlyTransmissionFullResults_$(case)$(offsets_case)$(retirements_case)$(CleanElecCosts)CostElec$(CleanGasCosts)CostGas$(NETSCost)NETsCost.csv",Tables.table(HourlyTransmissionFullSave'), writeheader = true)
 
 print("Success!")
 
