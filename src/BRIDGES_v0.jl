@@ -19,23 +19,23 @@ import Pkg
 # Pkg.add("Distances")
 # Pkg.add("Gurobi")
 # Pkg.add("Tables")
-#Pkg.add("DelimitedFiles")
-using DataFrames, CSV, Tables, Clustering, JuMP, Distances, Gurobi, Dates
+# Pkg.add("DelimitedFiles")
+using DataFrames, CSV, Tables, Clustering, JuMP, Distances, Gurobi, Dates, Distributed
 
-# creates output folder automatically
+# creates output folder automatically, and get path to necessary data
 function mk_dirs()
-    timestamp = Dates.format(now(), "YYYYmmdd-HHMMSS")
+    timestamp = Dates.format(now(), "YYYYmmdd-HHMMSSss")
     top_level_path = abspath(joinpath(@__DIR__, ".."))
     
-    data_dir *= top_level_path * "data/"
+    data_dir = top_level_path * "data/"
     out_dir = joinpath(top_level_path, "output", "$timestamp")
     
     @assert !ispath(out_dir) "File name already taken!"
     mkpath(out_dir)
-    return out_dir * "/", data_dir *
+    return out_dir * "/", data_dir
 end
 
-out_dir, data_dir *= mk_dirs()
+out_dir, data_dir = mk_dirs()
 
 # Toggles to turn on/off different model relaxations and functionality
 
@@ -62,17 +62,17 @@ appliance_decisions = 1
 hybrids_allowed = 0
 liquids_allowed = 0
 
-
+NumericFocus = 0
 # Clustering parameters
-T_inv = 1               # Number of investment time periods modeled
-N_Periods = 1         # Number of representative operational time slices modeled for each investment period
+T_inv = 5               # Number of investment time periods modeled
+N_Periods = 6           # Number of representative operational time slices modeled for each investment period
 HOURS_PER_PERIOD = 24   # Number of hourly time steps in each rep. op. time slice
 # Clustering technique to use for generating representative days
 # Options include:
 # (a) "average",
 # (b) "ward",
 # (c) "kmeans"
-clustering_case = "average"     
+clustering_case = "ward"     
 
 BaseYear = 2019                             # Initial year
 Years = [2020,2025,2030,2035,2040]          # Modeled investment years
@@ -171,6 +171,11 @@ end
 
 
 # Print outs just to confirm the proper scenario is running
+println("Folder Name: $(out_dir)")
+println("NumericFocus: $(NumericFocus)")
+println("T_inv: $(T_inv)")
+println("N_Periods: $(N_Periods)")
+println("Clustering Case: $(clustering_case)")
 println("$(system) $(num)")
 println(region)
 println(case)
@@ -309,7 +314,7 @@ end
 ################################################################################
 cumulativefailurefrac = zeros(APPLIANCES,T_inv,T_inv)
 failureProb = zeros(APPLIANCES,150)
-failureArchive = CSV.read(data_dir ** * "failureProb.csv",DataFrame)
+failureArchive = CSV.read(data_dir * "failureProb.csv",DataFrame)
 # First, calculate failure probabilities for each appliance class in each year of its lifetime from 1 to 50.
 for a = 1:APPLIANCES
     for i = 1:50
@@ -788,13 +793,16 @@ end
 # a set of representative days. K-mediods is employed.
 # Reshape your load vector for your zone of interest into lengths of HOURS_PER_PERIOD
 
-DemandClustering = copy(D_Elec)
+# Load for electricity
+DemandClustering = copy(D_Elec) # [=] 8760 x NODES_ELEC
 for n = 1:NODES_ELEC
     DemandClustering[:,n] = DemandClustering[:,n] +  sum(APPLIANCES_NodalLoc_ELEC[n,a]*ApplianceProfilesELEC[:,a]*InitialAppliancePopulation[a] for a = 1:APPLIANCES)
 end
-DemandClustering = sum(DemandClustering, dims = 2)
+DemandClustering = sum(DemandClustering, dims = 2) # [=] 8760
 DemandClustering = (DemandClustering.- minimum(DemandClustering))./(maximum(DemandClustering) - minimum(DemandClustering))
 LOAD_ELEC = reshape(DemandClustering, (HOURS_PER_PERIOD, Periods_Per_Year))
+
+# Load for gas
 DemandClustering = copy(D_Gas)
 for n = 1:NODES_GAS
     DemandClustering[:,n] =DemandClustering[:,n] +  sum(APPLIANCES_NodalLoc_GAS[n,a]*ApplianceProfilesGAS[:,a]*InitialAppliancePopulation[a] for a = 1:APPLIANCES)
@@ -802,6 +810,7 @@ end
 DemandClustering = sum(DemandClustering, dims = 2)
 DemandClustering = (DemandClustering.- minimum(DemandClustering))./(maximum(DemandClustering) - minimum(DemandClustering))
 LOAD_GAS = reshape(DemandClustering, (HOURS_PER_PERIOD, Periods_Per_Year))
+
 ProfilesClustering = unique(HourlyVRE, dims = 2)
 HourlyVREProfilesClustering = reshape(ProfilesClustering, (HOURS_PER_PERIOD, Periods_Per_Year,length(ProfilesClustering[1,:])))
 global ClusteringData = vcat(LOAD_ELEC,  LOAD_GAS)
@@ -809,13 +818,15 @@ for x = 1:length(ProfilesClustering[1,:])
     global ClusteringData = vcat(ClusteringData, HourlyVREProfilesClustering[:,:,x])
 end
 
-medoids = zeros(T_inv, T_ops)
-RepDays = zeros(T_inv, Periods_Per_Year)
-weights = zeros(T_inv, T_ops)
+medoids = zeros(T_inv, T_ops) # [=] investment periods x operational periods per investment period (e.g. 5 x 6)
+RepDays = zeros(T_inv, Periods_Per_Year) # [=] investment periods x perdios per year (e.g. 5 x 365)
+weights = zeros(T_inv, T_ops) # [=] investment periods x operational periods per investment period
 m = zeros(length(ClusteringData[:,1]),1)
 
 D = pairwise(Euclidean(), ClusteringData, dims = 2)
+# code assumes average clustering
 H = hclust(D, linkage = :average)
+
 if clustering_case =="ward"
     global H = hclust(D, linkage = :ward)
 end
@@ -839,6 +850,17 @@ for i = 1:T_inv
     RepDays[i,:] = copy(a)
 end
 
+clustering_params = "_InvPeriods$(T_inv)_NPeriods$(N_Periods)_Cluster$(clustering_case)"
+
+CSV.write(out_dir * "ClusteringData" * clustering_params * ".csv",Tables.table(ClusteringData'), writeheader = true)
+# CSV.write(out_dir * "H" * clustering_params * ".csv",Tables.table(H), writeheader = true)
+
+CSV.write(out_dir * "medoids" * clustering_params * ".csv",Tables.table(medoids), writeheader = true)
+CSV.write(out_dir * "RepDays" * clustering_params * ".csv",Tables.table(RepDays'), writeheader = true)
+CSV.write(out_dir * "weights" * clustering_params * ".csv",Tables.table(weights), writeheader = true)
+
+CSV.write(out_dir * "a" * clustering_params * ".csv",Tables.table(a), writeheader = true)
+CSV.write(out_dir * "m" * clustering_params * ".csv",Tables.table(m), writeheader = true)
 
 ## After identifying the representative days, the raw data are
 # re-shaped into the required indexing format for optimization
@@ -958,7 +980,16 @@ maxSustainableBiomass = max_biomethane_share*sum(sum(sum(APPLIANCES_NodalLoc_GAS
 ## Optimization program
 ################################################################################
 ################################################################################
-m = Model(optimizer_with_attributes(Gurobi.Optimizer,"Threads" => 128,"BarHomogeneous" => 1,"ScaleFlag"=>2, "FeasibilityTol"=> 0.005, "OptimalityTol" => 0.001, "BarConvTol"=> 0.0001, "Method"=> 2, "Crossover"=> 0))
+m = Model(optimizer_with_attributes(Gurobi.Optimizer,
+                                    "Threads" => 128,
+                                    "BarHomogeneous" => 1,
+                                    "ScaleFlag"=>2, 
+                                    "FeasibilityTol"=> 0.005, 
+                                    "OptimalityTol" => 0.001, 
+                                    "BarConvTol"=> 0.0001, 
+                                    "Method"=> 2, 
+                                    "Crossover"=> 0,
+                                    "NumericFocus"=>NumericFocus))
 
 ###############################################################################
 ### Expansion and retirement of energy supply/demand units
